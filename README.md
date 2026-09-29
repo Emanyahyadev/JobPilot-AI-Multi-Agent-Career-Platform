@@ -1,4 +1,4 @@
-# JobPilot AI
+# JobPilot AI — Multi-Agent-Career-Platform
 > **Autonomous Multi-Agent Career Platform: Tailor Multi-Format Resumes, Discover Aligned Jobs Automatically & Apply via Gmail Integration**
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
