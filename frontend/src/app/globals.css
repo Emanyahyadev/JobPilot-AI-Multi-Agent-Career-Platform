@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F8FA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F0F4F8;
+  --border: #E2E8F0;
+  --border-light: #EDF2F7;
+  --foreground: #0F172A;
+  --foreground-secondary: #475569;
+  --foreground-muted: #94A3B8;
+  --strong-dark: #020617;
+  
+  /* JobPilot Brand Color System (Derived from Logo) */
+  --pilot-navy: #0F172A;
+  --pilot-dark-blue: #1E293B;
+  --pilot-blue: #1D4ED8;
+  --pilot-sky: #0284C7;
+  --pilot-cyan: #0EA5E9;
+  --pilot-light-sky: #E0F2FE;
+  --pilot-indigo: #4F46E5;
+  --pilot-indigo-light: #EEF2FF;
+  
+  --badge-success-bg: #ECFDF5;
+  --badge-success-text: #047857;
+  --badge-success-border: #A7F3D0;
+  
+  --badge-warning-bg: #FFFBEB;
+  --badge-warning-text: #B45309;
+  --badge-warning-border: #FDE68A;
+  
+  --badge-error-bg: #FEF2F2;
+  --badge-error-text: #B91C1C;
+  --badge-error-border: #FECACA;
+  
+  --accent: #0EA5E9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-strong-dark: var(--strong-dark);
+  --color-accent: var(--accent);
+  --color-pilot-navy: var(--pilot-navy);
+  --color-pilot-blue: var(--pilot-blue);
+  --color-pilot-sky: var(--pilot-sky);
+  --color-pilot-cyan: var(--pilot-cyan);
+  --color-pilot-indigo: var(--pilot-indigo);
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D8D3;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B5B5AF;
+}
+
+/* Selection */
+::selection {
+  background: #181816;
+  color: #FFFFFF;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#181816] focus-visible:ring-offset-1 focus-visible:ring-offset-[#F7F7F5];
+}
+
+/* Base Card Styling */
+.card-base {
+  background-color: #FFFFFF;
+  border: 1px solid #E4E4DF;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card-hover {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  border-color: #D4D4CE;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Status Badges */
+.badge-success {
+  background-color: var(--badge-success-bg);
+  color: var(--badge-success-text);
+  border: 1px solid var(--badge-success-border);
+}
+
+.badge-warning {
+  background-color: var(--badge-warning-bg);
+  color: var(--badge-warning-text);
+  border: 1px solid var(--badge-warning-border);
+}
+
+.badge-error {
+  background-color: var(--badge-error-bg);
+  color: var(--badge-error-text);
+  border: 1px solid var(--badge-error-border);
+}
+
+.badge-neutral {
+  background-color: #F1F1EE;
+  color: #6F6F68;
+  border: 1px solid #E4E4DF;
+}
+
+/* Shimmer loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #F1F1EE 25%, #E9E9E4 50%, #F1F1EE 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ==========================================================================
+   CV EXCLUSIVE PRINT MEDIA STYLES
+   Clean print styles that hide web application layout chrome and render
+   ONLY the chosen CV template with full fidelity, fonts, and colors.
+   ========================================================================== */
+@page {
+  size: A4 portrait;
+  margin: 0 !important;
+}
+
+@media print {
+  html, body {
+    background: #FFFFFF !important;
+    color: #181816 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Isolate strictly the printable CV document and hide everything else on the page */
+  body * {
+    visibility: hidden !important;
+  }
+
+  #printable-cv,
+  #printable-cv * {
+    visibility: visible !important;
+  }
+
+  /* Completely remove any web app navigation, sidebars, buttons, or modals */
+  .print\:hidden,
+  header,
+  aside,
+  nav,
+  button,
+  input,
+  textarea {
+    display: none !important;
+  }
+
+  /* Force the printable CV to take the full A4 canvas */
+  #printable-cv {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 10mm 12mm !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Avoid page breaks inside experience and education blocks */
+  .page-break-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
